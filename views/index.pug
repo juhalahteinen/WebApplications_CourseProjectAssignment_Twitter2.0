@@ -1,0 +1,54 @@
+doctype html 
+html
+  head
+    title= title
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css')
+    link(rel='stylesheet', href='styles.css')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js')
+
+    style
+      include ../public/styles.css
+      
+    body
+      .row.cyan.darken-4
+        h1(style='color: #f7dc6f ')= title
+        p(style=" color: #e0e0e0 ") The best microblogging service in the whole universum!
+         
+      .row
+        .col.s0.m0.l3
+        .col.s12.m6.l3.xl3.cyan.darken-4.hoverable
+          h3(style=" color: #f7dc6f ") Welcome to Twitter 2.0
+          p(style=" color: #e0e0e0 ") You have entered to universum's best microblogging service which is totally free. By logging in, you can create your own posts - otherwise you can only see others' (if there is any).
+
+          .row
+            h3(style=" color: #f7dc6f ") Log in to share moments with other people
+            form(method="POST" action="/posts/login")
+              .form-group.col.s10.offset-s1
+                label(for='username') Username
+                input#name.form-control(type='text' placeholder='Please enter username here' name='loginuser')
+              .form-group.col.s10.offset-s1
+                label(for='pw') Password
+                input#password.form-control(type='password' placeholder='Please enter password here' name='loginpassword')
+              button.btn.lime.darken-3.waves-effect.waves-light(type='submit') Log In
+        
+            p(style=" color: #e0e0e0 ") or
+            form(method="POST" action="/getin")
+              button.btn.lime.darken-3.waves-effect.waves-light(type='submit' name='action') Sign up
+            p
+          
+        .col
+      
+        .col.s12.m6.l4.xl4.cyan.darken-4.hoverable
+          .col
+            h4(style=" color: #f7dc6f ") Check out what's going on in the world
+            each post in postlist
+              .row.s8.m6.blue.lighten-4
+                p.left-align #{post.author}: #{post.content} - #{post.time} - #{post.date}
+            else
+              p(style=" color: #e0e0e0 ") There are no posts yet. Log in and be the first to create one!
+      
+    
+  br
+  p © Lähteinen Juha (2020)
